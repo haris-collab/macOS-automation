@@ -39,17 +39,24 @@ Follow these steps to get your Mac doing chores for you:
 ### 📥 1. Download or Clone the Repo
 You can use Git or just click "Download ZIP".
 
-```bash
+```
 git clone https://github.com/your-username/macos-automation.git
 cd macos-automation
+```
 
 📦 2. Move the automation.app to a Folder of Your Choice
 Pick a folder like:
+```
 /Users/yourname/automation.app
+```
+
 💡 You can also rename the app if you want — just make sure you update the path in the next step.
+
+
 📝 3. Edit the LaunchAgent .plist File
 Open com.haris.backupscript.plist in TextEdit, VS Code, or any text editor.
 Find this block:
+```
 <key>ProgramArguments</key>
 <array>
     <string>/usr/bin/open</string>
@@ -65,19 +72,31 @@ Still in the .plist, find this block:
     <key>Minute</key>
     <integer>30</integer>
 </dict>
+```
+
 Change the <integer> values to whatever time you want the app to run (24-hour format).
 Example:
+```
 22:00 for 10:00 PM
 6:45 for 6:45 AM
+```
+
 🔐 5. Update or Remove the Password (Important!)
 Open the automation.app file in Automator:
+```
 open -a Automator /Users/yourname/automation.app
-
+```
 If you see anything like this:
+```
 echo "YourOldPassword" | sudo -S some-command
+```
 
 🗂 6. Install the LaunchAgent
 Now copy your updated .plist file to the correct system folder:
+```
 cp com.haris.backupscript.plist ~/Library/LaunchAgents/
+```
 Then load it to activate:
+```
 launchctl load ~/Library/LaunchAgents/com.haris.backupscript.plist
+```
